@@ -10,10 +10,11 @@ import {db} from "./firebase.config"
 function App() {
   const [jobs, setJobs] = useState([]);
   const [customSearch, setCustomSearch] = useState(false);
-
+//Asynchronous function which actually fetch data from firebase.
   const fetchJobs = async() => {
     setCustomSearch(false);
     const tempJobs = []
+    //orderbased on certain criteria.
     const jobsRef = query(collection(db, "jobs"));
     const q = query(jobsRef, orderBy("postedOn", "desc"));
     const req = await getDocs(q);
